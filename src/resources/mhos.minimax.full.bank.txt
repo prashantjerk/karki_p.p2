@@ -1,0 +1,42 @@
+Select password length: 4
+Select a human(h) or computer(c) password maker: h
+Select a human(h) or computer(c) password breaker: c
+Possible Passwords:
+aahs
+aals
+abas
+abba
+abbe
+abed
+abet
+able
+ably
+...
+zoon
+zoos
+zori
+zyme
+Please enter one of the passwords: mhos
+secret password: mhos
+Possible passwords: 3878
+Breaker's guess(1): aahs
+Similarity: 1
+Possible passwords: 1294
+Breaker's guess(2): mors
+Similarity: 2
+Possible passwords: 159
+Breaker's guess(3): cows
+Similarity: 1
+Possible passwords: 25
+Breaker's guess(4): sura
+Similarity: 0
+Possible passwords: 9
+Breaker's guess(5): aide
+Similarity: 0
+Possible passwords: 4
+Breaker's guess(6): bell
+Similarity: 0
+Possible passwords: 1
+Breaker's guess(7): mhos
+Similarity: 4
+Game Over!

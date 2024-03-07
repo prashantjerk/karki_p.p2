@@ -1,0 +1,40 @@
+Select password length: 5
+Select a human(h) or computer(c) password maker: h
+Select a human(h) or computer(c) password breaker: c
+Possible Passwords:
+noria
+enjoy
+shily
+louse
+scowl
+opium
+spied
+prowl
+nerds
+dimer
+deist
+wimps
+bingo
+jihad
+riser
+tufts
+ketol
+dawed
+memos
+pagan
+Please enter one of the passwords: prowl
+secret password: prowl
+Possible passwords: 20
+Breaker's guess(1): bingo
+Similarity: 0
+Possible passwords: 15
+Breaker's guess(2): deist
+Similarity: 0
+Possible passwords: 6
+Breaker's guess(3): ketol
+Similarity: 1
+Possible passwords: 3
+Breaker's guess(4): prowl
+Similarity: 5
+Game Over!
+
