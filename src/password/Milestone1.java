@@ -8,11 +8,14 @@ package password;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import static java.lang.System.out;
 
 // Use this class to provide a console interface for Milestone 1
 
@@ -37,29 +40,28 @@ public class Milestone1 {
             }
             fileInput.close();
 
-            // Random Password Maker
-            RandomPasswordMaker randomPasswordMaker = new RandomPasswordMaker();
-            Password randomPassword = randomPasswordMaker.selectPassword(passwordCollection);
-
-            // ask length from user and filter out the password of that length
-            System.out.print("Select password length: ");
+            // ask length from user and filter out possible passwords of that length
+            out.print("Select password length: ");
             PasswordBank passwordBank = new PasswordBank(passwordCollection);
             Collection<Password> passwordListOfLength = passwordBank.passwordOfLength(input.nextInt());
             Iterator<Password> itr = passwordListOfLength.iterator();
+            out.println("Possible Passwords: ");
             while(itr.hasNext()) {
-                // DO SOMETHING
+                out.println(itr.next());
             }
+
+            // Console Password Breaker asks user to guess a password
+            ConsolePasswordBreaker consolePasswordBreaker = new ConsolePasswordBreaker(new Scanner(System.in), new PrintStream(out));
+            Password userGuess = consolePasswordBreaker.nextGuess();
+
+            // Random Password Maker generates a random password
+            RandomPasswordMaker randomPasswordMaker = new RandomPasswordMaker();
+            Password randomPassword = randomPasswordMaker.selectPassword(passwordListOfLength);
+            out.println("secret password: " + randomPassword);
+
+            out.println("Similarity: " + randomPassword.similarity(userGuess));
         } catch (IOException e) {
             throw new IOException(String.format("Could not open %s", file));
         }
-
-//        RandomPasswordMaker randomPassword = new RandomPasswordMaker();
-//        System.out.println(randomPassword.selectPassword(passwordCollection));
-
-
-//        // display the passwords in the file to the console
-//        for (Password password : passwordCollection) {
-//            System.out.println(password);
-//        }
     }
 }

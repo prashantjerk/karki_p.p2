@@ -24,7 +24,7 @@ public class ConsolePasswordBreaker implements PasswordBreaker{
     // Uses the console (standard in and out) to ask the user for their next guess.
     @Override
     public Password nextGuess() {
-        out.print("Enter the next guess: ");
+        out.print("Please enter one of the passwords: ");
         String nextGuess = scanner.nextLine();
         return new Password(nextGuess);
     }
