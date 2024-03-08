@@ -29,7 +29,7 @@ public class Milestone1 {
         try {
             Scanner input = new Scanner(System.in);
             // read from the file
-            file = new File("src\\resources\\password.bank.txt");
+            file = new File("src\\resources\\short.password.bank.txt");
             Scanner fileInput = new Scanner(file, StandardCharsets.UTF_8);
             Collection<Password> passwordCollection = new ArrayList<>();
 
@@ -42,24 +42,38 @@ public class Milestone1 {
 
             // ask length from user and filter out possible passwords of that length
             out.print("Select password length: ");
+            int passwordLength = input.nextInt();
             PasswordBank passwordBank = new PasswordBank(passwordCollection);
-            Collection<Password> passwordListOfLength = passwordBank.passwordOfLength(input.nextInt());
-            Iterator<Password> itr = passwordListOfLength.iterator();
-            out.println("Possible Passwords: ");
-            while(itr.hasNext()) {
-                out.println(itr.next());
-            }
+            Collection<Password> passwordListOfLength = passwordBank.passwordOfLength(passwordLength);
 
-            // Console Password Breaker asks user to guess a password
-            ConsolePasswordBreaker consolePasswordBreaker = new ConsolePasswordBreaker(new Scanner(System.in), new PrintStream(out));
-            Password userGuess = consolePasswordBreaker.nextGuess();
+            // Iterator<Password> itr = passwordListOfLength.iterator();
+            // displays the list of possible passwords of the length # in the console
+//            out.println("Possible Passwords: ");
+//            while(itr.hasNext()) {
+//                out.println(itr.next());
+//            }
+
 
             // Random Password Maker generates a random password
             RandomPasswordMaker randomPasswordMaker = new RandomPasswordMaker();
             Password randomPassword = randomPasswordMaker.selectPassword(passwordListOfLength);
             out.println("secret password: " + randomPassword);
 
-            out.println("Similarity: " + randomPassword.similarity(userGuess));
+            // Console Password Breaker asks user to guess a password
+            ConsolePasswordBreaker consolePasswordBreaker = new ConsolePasswordBreaker(new Scanner(System.in), new PrintStream(out));
+            boolean passwordMatched = false;
+
+            do {
+                Password userGuess = consolePasswordBreaker.nextGuess();
+
+
+
+                out.println("Similarity: " + randomPassword.similarity(userGuess));
+                if(randomPassword.similarity(userGuess) == passwordLength) {
+                    passwordMatched = true;
+                    out.println("Game Over!");
+                }
+            } while(passwordMatched == false);
         } catch (IOException e) {
             throw new IOException(String.format("Could not open %s", file));
         }
