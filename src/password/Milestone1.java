@@ -65,9 +65,6 @@ public class Milestone1 {
 
             do {
                 Password userGuess = consolePasswordBreaker.nextGuess();
-
-
-
                 out.println("Similarity: " + randomPassword.similarity(userGuess));
                 if(randomPassword.similarity(userGuess) == passwordLength) {
                     passwordMatched = true;
