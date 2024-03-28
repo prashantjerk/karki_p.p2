@@ -11,13 +11,12 @@ import java.util.Iterator;
 
 public class EliminationBreaker implements PasswordBreaker{
     private Collection<Password> passwords = new ArrayList<>();
-    int count;
+    private int count;
 
     // Creates an elimination breaker that uses the given collection of passwords as its initial collection of possible passwords.
     public EliminationBreaker(java.util.Collection<Password> passwords){
         this.passwords = passwords;
         count = passwords.size();
-
         // sorting passwords
         Collections.sort((ArrayList<Password>) passwords);
     }

@@ -1,3 +1,7 @@
+// @author: Prashant Karki
+// CS241
+//Spring 2024
+
 package password;
 
 import java.util.ArrayList;
@@ -12,7 +16,7 @@ public class PasswordBank {
     }
 
     // This method will create and return a Collection of passwords of the given length.
-    public Collection<Password> passwordOfLength(int length) {
+    public Collection<Password> passwordsOfLength(int length) {
         List<Password> collectionOfPasswords = new ArrayList<>();
         for(Password password: passwords) {
             if(password.length() == length) {

@@ -12,7 +12,6 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -29,7 +28,7 @@ public class Milestone1 {
         try {
             Scanner input = new Scanner(System.in);
             // read from the file
-            file = new File("src\\resources\\short.password.bank.txt");
+            file = new File("src\\resources\\password.bank.txt");
             Scanner fileInput = new Scanner(file, StandardCharsets.UTF_8);
             Collection<Password> passwordCollection = new ArrayList<>();
 
@@ -44,14 +43,7 @@ public class Milestone1 {
             out.print("Select password length: ");
             int passwordLength = input.nextInt();
             PasswordBank passwordBank = new PasswordBank(passwordCollection);
-            Collection<Password> passwordListOfLength = passwordBank.passwordOfLength(passwordLength);
-
-            // Iterator<Password> itr = passwordListOfLength.iterator();
-            // displays the list of possible passwords of the length # in the console
-//            out.println("Possible Passwords: ");
-//            while(itr.hasNext()) {
-//                out.println(itr.next());
-//            }
+            Collection<Password> passwordListOfLength = passwordBank.passwordsOfLength(passwordLength);
 
 
             // Random Password Maker generates a random password
@@ -70,7 +62,7 @@ public class Milestone1 {
                     passwordMatched = true;
                     out.println("Game Over!");
                 }
-            } while(passwordMatched == false);
+            } while(!passwordMatched);
         } catch (IOException e) {
             throw new IOException(String.format("Could not open %s", file));
         }

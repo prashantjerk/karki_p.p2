@@ -26,7 +26,7 @@ public class ConsolePasswordBreaker implements PasswordBreaker{
     public Password nextGuess() {
         out.print("Please enter one of the passwords: ");
         String nextGuess = scanner.nextLine();
-        return new Password(nextGuess);
+        return new Password(nextGuess.toLowerCase());
     }
 
     // In this class, this method does not need to do anything.

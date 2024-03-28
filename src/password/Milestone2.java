@@ -39,14 +39,15 @@ public class Milestone2 {
 
             // for collection of passwords of the length given by the user
             PasswordBank passwordBank = new PasswordBank(passwordCollection);
-            Collection<Password> passwordListOfLength = passwordBank.passwordOfLength(passwordLength);
-            for(Password password: passwordListOfLength) {
+            Collection<Password> passwordListOfLength = passwordBank.passwordsOfLength(passwordLength);
+            out.print("Secret Passwords: ");
+            for (Password password : passwordListOfLength) {
                 out.println(password);
             }
 
             // let user create a secret password
             out.print("Please enter one of the passwords: ");
-            Password secretPassword = new Password(input.next());
+            Password secretPassword = new Password(input.next().toLowerCase());
             out.println("secret password: " + secretPassword);  // display the password on the console
 
             // creating eliminationBreaker and creating an ArrayList for the passwords that are not eliminated
@@ -64,13 +65,14 @@ public class Milestone2 {
                 out.println("similarity: " + similarity);
                 eliminationBreaker.guessResults(AIGuess, similarity);
                 attempt++;
-            } while(passwordLength != similarity);
+            } while (passwordLength != similarity);
 
             out.println("Game over!");
 
 
         } catch (IOException e) {
             throw new IOException(String.format("Could not open %s", file));
-        }    }
+        }
+    }
 }
 
