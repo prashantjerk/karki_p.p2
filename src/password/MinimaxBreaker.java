@@ -54,7 +54,6 @@ public class MinimaxBreaker implements PasswordBreaker{
         allItr = passwords.iterator();
         itrForEliminated = afterElimination.iterator();
         Password nextPass = null;
-        Password passInEliminated = null;
 
         Password nextGuess = null;
         if(afterElimination.size() == 1) {   // if the single password is left in the list, just return the password
@@ -70,14 +69,11 @@ public class MinimaxBreaker implements PasswordBreaker{
             int eliminationCount;
 
             // runs through all the password and the possible similarity score and find number of elimination for each
-            while(allItr.hasNext()) {
-                nextPass = allItr.next();
-                for (int i = 0; i <= nextPass.length(); i++) {
+            for(Password password: passwords) {
+                for (int i = 0; i <= password.length(); i++) {
                     eliminationCount = 0;
-                    itrForEliminated = afterElimination.iterator();
-                    while (itrForEliminated.hasNext()) {
-                        passInEliminated = itrForEliminated.next();
-                        if (nextPass.similarity(passInEliminated) != i)
+                    for (Password passwordInEliminated: afterElimination) {
+                        if (password.similarity(passwordInEliminated) != i)
                             eliminationCount++;
                     }
 
